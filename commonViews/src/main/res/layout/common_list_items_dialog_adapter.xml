@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:background="@color/sfs_c13"
+>
+    <com.common.base.CustomFontTextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/list_item_selector"
+            android:textColor="@color/sfs_c11"
+            android:textSize="@dimen/sfs_s7"
+            android:gravity="center"
+            android:text="女"
+    />
+
+    <ImageView android:id="@+id/lineImgView" style="@style/full_line_style" />
+
+</LinearLayout>

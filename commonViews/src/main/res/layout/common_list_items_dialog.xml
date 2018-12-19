@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:background="@color/transparent"
+              android:layout_marginLeft="15dp"
+              android:layout_marginRight="15dp"
+>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/white_small_corner_rectangle_bg"
+    >
+        <com.common.base.CustomFontTextView
+                android:id="@+id/titleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:background="@drawable/shape_top_corner_selector"
+                android:gravity="center"
+                android:textSize="@dimen/sfs_s2"
+                android:textColor="@color/sfs_c121"
+                android:text="选择性别"
+        />
+        <ImageView style="@style/full_line_style" />
+
+        <com.common.base.ItemExpandListView
+                android:id="@+id/itemExpandListView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@null"
+                android:scrollbars="none"
+                android:fadeScrollbars="true"
+                android:paddingBottom="4dp"
+        />
+    </LinearLayout>
+
+    <com.common.base.CustomFontTextView
+            android:id="@+id/cancelBtnTextView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/shape_corner_selector"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/sfs_c11"
+            android:textSize="@dimen/sfs_s7"
+            android:gravity="center"
+            android:text="取消"
+    />
+</LinearLayout>
