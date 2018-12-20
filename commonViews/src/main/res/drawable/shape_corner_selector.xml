@@ -4,14 +4,14 @@
     <item android:state_pressed="true">
         <shape>
             <solid android:color="@color/sfs_c120" />
-            <corners android:bottomLeftRadius="12dp" android:bottomRightRadius="12dp" android:topLeftRadius="12dp" android:topRightRadius="12dp" />
+            <corners android:bottomLeftRadius="4dp" android:bottomRightRadius="4dp" android:topLeftRadius="4dp" android:topRightRadius="4dp" />
             <stroke android:width="0.5dp" android:color="@color/sfs_c120" />
         </shape>
     </item>
     <item android:state_pressed="false">
         <shape>
             <solid android:color="@color/white" />
-            <corners android:bottomLeftRadius="12dp" android:bottomRightRadius="12dp" android:topLeftRadius="12dp" android:topRightRadius="12dp" />
+            <corners android:bottomLeftRadius="4dp" android:bottomRightRadius="4dp" android:topLeftRadius="4dp" android:topRightRadius="4dp" />
             <stroke android:width="0.5dp" android:color="@color/white" />
         </shape>
     </item>

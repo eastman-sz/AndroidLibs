@@ -1,3 +1,4 @@
+apply plugin: 'com.novoda.bintray-release'
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -24,6 +25,12 @@ android {
         }
     }
 
+    lintOptions {
+        disable "ResourceType"
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
 }
 
 ext.anko_version = '0.10.5' //https://github.com/Kotlin/anko
@@ -37,4 +44,15 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "org.jetbrains.anko:anko:$anko_version"
+}
+
+publish {
+    userOrg = 'eastman'      //bintray注册的用户名
+    groupId = 'com.smilefuns'         //compile引用时的第1部分groupId
+    artifactId = 'commonViews'     //compile引用时的第2部分项目名
+    publishVersion = '1.0.0'  //compile引用时的第3部分版本号
+    desc = 'do more for things'//项目描述
+    repoName="freejars" //你的仓库名称，没有填写默认仓库是maven//这也是很多人上传仓库不对名问题最多情况，
+    website = 'https://github.com/eastman-sz/AndroidLibs.git' //github 托管地址
+    dryRun=false
 }

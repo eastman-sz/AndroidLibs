@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".views.WheelViewActivity"
+        android:orientation="vertical"
+        android:background="@color/white"
+>
+    <com.common.base.CommonTitleView
+            android:id="@+id/commonTitleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <com.ss.lib.views.TextWheelView
+            android:id="@+id/textWheelView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+    />
+    <ImageView style="@style/full_line_style"/>
+
+    <com.common.base.CustomFontTextView
+            android:id="@+id/valueTextView"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:textSize="@dimen/sfs_s4"
+            android:textColor="@color/sfs_c3"
+    />
+
+</LinearLayout>

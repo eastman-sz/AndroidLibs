@@ -34,6 +34,13 @@
                 android:text="TitleDialog"
         />
 
+        <Button
+                android:id="@+id/listDialogBtn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="listDialog"
+        />
     </LinearLayout>
 
     <LinearLayout
@@ -49,6 +56,27 @@
                 android:text="pullRefreshView"
         />
 
+        <Button
+                android:id="@+id/wheelViewBtn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="wheelView"
+        />
     </LinearLayout>
 
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:orientation="horizontal"
+    >
+
+        <Button
+                android:id="@+id/numberProgressBarBtn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="numberProgressBar"
+        />
+    </LinearLayout>
 </LinearLayout>

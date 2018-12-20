@@ -37,8 +37,21 @@ class CommonViewsActivity : BaseAppCompactActivity() {
             CommonDialogHelper.showCommonTitleDialog(context , "标准带标题弹窗" , "是" , "否" , object : OnCommonItemClickListener<Int>(){})
         }
 
+        listDialogBtn.setOnClickListener {
+            CommonDialogHelper.showCommonListItemsDialog(context , "请选择" , object : OnCommonItemClickListener<Int>(){} ,
+                "A" , "B" , "C")
+        }
+
         pullRefreshViewBtn.setOnClickListener {
             startActivity<PullRefreshActivity>()
+        }
+
+        wheelViewBtn.setOnClickListener {
+            startActivity<WheelViewActivity>()
+        }
+
+        numberProgressBarBtn.setOnClickListener {
+            startActivity<NumberProgressbarActivity>()
         }
     }
 }

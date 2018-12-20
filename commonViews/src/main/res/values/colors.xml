@@ -12,7 +12,8 @@
     <color name="refresh_time_color">#afafaf</color>
     <!-- 共通背景 -->
     <color name="common_color1">#FFFFFF</color>
-
+    <!-- wheelview -->
+    <color name="wheelview_c12">#464754</color>
 
     <color name="sfs_c1">#FFFFFF</color>
     <color name="sfs_c2">#ADADAD</color>
