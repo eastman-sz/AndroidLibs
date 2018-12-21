@@ -26,8 +26,6 @@ android {
     }
 
     lintOptions {
-        disable "ResourceType"
-        checkReleaseBuilds false
         abortOnError false
     }
 
@@ -46,13 +44,21 @@ dependencies {
     implementation "org.jetbrains.anko:anko:$anko_version"
 }
 
+//加上这些(如果有中文注释)
+tasks.withType(Javadoc) {
+    options{ encoding "UTF-8"
+        charSet 'UTF-8'
+        links "http://docs.oracle.com/javase/7/docs/api"
+    }
+}
+
 publish {
     userOrg = 'eastman'      //bintray注册的用户名
     groupId = 'com.smilefuns'         //compile引用时的第1部分groupId
     artifactId = 'commonViews'     //compile引用时的第2部分项目名
-    publishVersion = '1.0.0'  //compile引用时的第3部分版本号
-    desc = 'do more for things'//项目描述
+    publishVersion = '1.0.1'  //compile引用时的第3部分版本号
+    desc = 'common views uesd in android'//项目描述
     repoName="freejars" //你的仓库名称，没有填写默认仓库是maven//这也是很多人上传仓库不对名问题最多情况，
-    website = 'https://github.com/eastman-sz/AndroidLibs.git' //github 托管地址
+    website = 'https://github.com/eastman-sz/AndroidLibs' //github 托管地址
     dryRun=false
 }
