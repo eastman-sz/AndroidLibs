@@ -1,12 +1,10 @@
-apply plugin: 'com.novoda.bintray-release'
+/*apply plugin: 'com.novoda.bintray-release'*/
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 28
-
-
 
     defaultConfig {
         minSdkVersion 19
@@ -52,13 +50,13 @@ tasks.withType(Javadoc) {
     }
 }
 
-publish {
+/*publish {
     userOrg = 'eastman'      //bintray注册的用户名
     groupId = 'com.smilefuns'         //compile引用时的第1部分groupId
     artifactId = 'commonViews'     //compile引用时的第2部分项目名
-    publishVersion = '1.0.1'  //compile引用时的第3部分版本号
+    publishVersion = '1.0.0'  //compile引用时的第3部分版本号
     desc = 'common views uesd in android'//项目描述
     repoName="freejars" //你的仓库名称，没有填写默认仓库是maven//这也是很多人上传仓库不对名问题最多情况，
     website = 'https://github.com/eastman-sz/AndroidLibs' //github 托管地址
     dryRun=false
-}
+}*/

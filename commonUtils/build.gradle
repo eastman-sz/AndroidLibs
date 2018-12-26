@@ -1,0 +1,80 @@
+apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+}
+
+//加上这些(如果有中文注释)
+tasks.withType(Javadoc) {
+    options{ encoding "UTF-8"
+        charSet 'UTF-8'
+        links "http://docs.oracle.com/javase/7/docs/api"
+    }
+}
+
+
+task clearJar(type: Delete) {
+    delete 'build/libs/mySdk.jar'////这行表示如果你已经打过一次包了，再进行打包则把原来的包删掉
+}
+
+task makeJar(type: Copy) {
+    from('build/intermediates/intermediate-jars/debug') //这行表示要打包的文件的路径，根据下面的内容，其实是该路径下的classes.jar
+//    into('build/libs/')  //这行表示打包完毕后包的生成路径，也就是生成的包存在哪
+    into('D://libs/')
+    include('classes.jar')  //看到这行，如果你对分包有了解的话，你就可以看出来这行它只是将一些类打包了
+    rename ('classes.jar', 'utilslib.jar')
+}
+
+makeJar.dependsOn(clearJar, build)
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+
+publish {
+    userOrg = 'eastman'      //bintray注册的用户名
+    groupId = 'com.smilefuns'         //compile引用时的第1部分groupId
+    artifactId = 'commonUtils'     //compile引用时的第2部分项目名
+    publishVersion = '1.0.0'  //compile引用时的第3部分版本号
+    desc = 'common utils include http request uesd in android'//项目描述
+    repoName="freejars" //你的仓库名称，没有填写默认仓库是maven//这也是很多人上传仓库不对名问题最多情况，
+    website = 'https://github.com/eastman-sz/AndroidLibs' //github 托管地址
+    dryRun=false
+}
+
+ext {
+    PUBLISH_GROUP_ID = 'com.smilefuns'
+    PUBLISH_ARTIFACT_ID = 'commonUtils'
+    PUBLISH_VERSION = '1.0.0'
+}
+
+/* 以下可以生成一个zip包，然后上传到bintray,再发布到jCenter,这样比较快捷 */
+apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'
