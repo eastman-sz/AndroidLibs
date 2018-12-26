@@ -1,4 +1,4 @@
-apply plugin: 'com.novoda.bintray-release'
+/*apply plugin: 'com.novoda.bintray-release'*/
 apply plugin: 'com.android.library'
 
 android {
@@ -59,6 +59,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
 
+/*
 publish {
     userOrg = 'eastman'      //bintray注册的用户名
     groupId = 'com.smilefuns'         //compile引用时的第1部分groupId
@@ -76,5 +77,8 @@ ext {
     PUBLISH_VERSION = '1.0.0'
 }
 
-/* 以下可以生成一个zip包，然后上传到bintray,再发布到jCenter,这样比较快捷 */
+*/
+/* 以下可以生成一个zip包，然后上传到bintray,再发布到jCenter,这样比较快捷 *//*
+
 apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'
+*/
