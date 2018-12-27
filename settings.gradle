@@ -1,1 +1,1 @@
-include ':app', ':commonViews', ':commonUtils'
+include ':app', ':commonViews', ':commonUtils', ':photoView'

@@ -1,0 +1,13 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.sdk.photo.view">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <application>
+        <activity android:name="com.photo.album.ImgActivity"
+                  android:theme="@android:style/Theme.Translucent.NoTitleBar"
+        />
+    </application>
+
+</manifest>
