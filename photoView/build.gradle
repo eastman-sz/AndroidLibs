@@ -65,7 +65,7 @@ publish {
     groupId = 'com.smilefuns'         //compile引用时的第1部分groupId
     artifactId = 'photoView'     //compile引用时的第2部分项目名
     publishVersion = '1.0.0'  //compile引用时的第3部分版本号
-    desc = 'photo or album selected from device uesd in android'//项目描述
+    desc = 'photo or album selected from device used in android'//项目描述
     repoName="freejars" //你的仓库名称，没有填写默认仓库是maven//这也是很多人上传仓库不对名问题最多情况，
     website = 'https://github.com/eastman-sz/AndroidLibs' //github 托管地址
     dryRun=false
