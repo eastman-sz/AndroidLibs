@@ -1,3 +1,4 @@
+apply plugin: 'com.novoda.bintray-release'
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -27,13 +28,16 @@ android {
         }
     }
 
+    lintOptions {
+        abortOnError false
+    }
+
 }
 
 repositories {
     flatDir { dirs 'libs' }
 }
 
-ext.kotlin_version = '1.2.71'
 ext.anko_version = '0.10.5' //https://github.com/Kotlin/anko
 
 dependencies {
@@ -45,4 +49,33 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
 }
+
+//加上这些(如果有中文注释)
+tasks.withType(Javadoc) {
+    options{ encoding "UTF-8"
+        charSet 'UTF-8'
+        links "http://docs.oracle.com/javase/7/docs/api"
+    }
+}
+
+publish {
+    userOrg = 'eastman'      //bintray注册的用户名
+    groupId = 'com.smilefuns'         //compile引用时的第1部分groupId
+    artifactId = 'photoView'     //compile引用时的第2部分项目名
+    publishVersion = '1.0.0'  //compile引用时的第3部分版本号
+    desc = 'photo or album selected from device uesd in android'//项目描述
+    repoName="freejars" //你的仓库名称，没有填写默认仓库是maven//这也是很多人上传仓库不对名问题最多情况，
+    website = 'https://github.com/eastman-sz/AndroidLibs' //github 托管地址
+    dryRun=false
+}
+
+ext {
+    PUBLISH_GROUP_ID = 'com.smilefuns'
+    PUBLISH_ARTIFACT_ID = 'photoView'
+    PUBLISH_VERSION = '1.0.0'
+}
+
+/* 以下可以生成一个zip包，然后上传到bintray,再发布到jCenter,这样比较快捷 */
+apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'

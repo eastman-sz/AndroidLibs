@@ -87,7 +87,6 @@ class PhotoDialog : PhotoFullScreenDialog {
                     }
                 }
 
-                //是否可点击
                 photoTitleView.setRightBtnEnabled(count > 0)
 
                 if (count > maxNum){

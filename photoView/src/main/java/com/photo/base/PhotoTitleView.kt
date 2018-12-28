@@ -43,10 +43,8 @@ class PhotoTitleView : PhotoBaseRelativeLayoutView {
 
     fun setRightBtnEnabled(enabled : Boolean){
         rightBtnTextView.isEnabled = enabled
-
         rightBtnTextView.setTextColor(if (enabled) resources.getColor(R.color.photoSdkTitleTextColor) else resources.getColor(R.color.photoDividerLineColor))
     }
-
 
     abstract class OnPhotoTitleClickListener{
         open fun onLeftBtnClick(){}
