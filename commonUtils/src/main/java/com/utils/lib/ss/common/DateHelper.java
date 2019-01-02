@@ -11,7 +11,7 @@ import java.util.Date;
  * @author E
  */
 @SuppressLint("SimpleDateFormat")
-public class DateHepler {
+public class DateHelper {
 
 	public static final String Y_M_D = "yyyy-MM-dd";
 	
