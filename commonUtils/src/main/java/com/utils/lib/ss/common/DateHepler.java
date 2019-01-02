@@ -20,8 +20,7 @@ public class DateHepler {
 	 * @return 一年当中的第几周
 	 */
 	public static int getWeekOfYear(){
-		Calendar calendar = Calendar.getInstance();
-		return calendar.get(Calendar.WEEK_OF_YEAR);
+		return getWeekOfYear(System.currentTimeMillis());
 	}
 	
 	/**
@@ -31,9 +30,16 @@ public class DateHepler {
 	 */
 	public static int getWeekOfYear(long timestamp){
 		Calendar calendar = Calendar.getInstance();
-		timestamp = adjustTimestamp(timestamp); 
+		timestamp = adjustTimestamp(timestamp);
+		calendar.setFirstDayOfWeek(Calendar.SUNDAY);
 		calendar.setTimeInMillis(timestamp);
-		return calendar.get(Calendar.WEEK_OF_YEAR);
+        int week = calendar.get(Calendar.WEEK_OF_YEAR);
+        int mouth = calendar.get(Calendar.MONTH);
+        //如果月份是12月，且求出来的周数是第一周，说明该日期实质上是这一年的第53周，也是下一年的第一周
+        if (mouth >= 11 && week <= 1){
+            week += 52;
+        }
+		return week;
 	}
 	
 	/**
