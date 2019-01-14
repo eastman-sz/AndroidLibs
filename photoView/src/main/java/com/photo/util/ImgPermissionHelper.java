@@ -5,23 +5,21 @@ import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-
 import java.util.ArrayList;
-
 /**
  * Created by E on 2016/12/20.
  */
-public class ImgPermissionHelpler {
+public class ImgPermissionHelper {
 
     public static void requestTakePhotoPermissions(Activity activity){
-        int permisson_2 = ContextCompat.checkSelfPermission(activity , Manifest.permission.CAMERA);
-        int permisson_3 = ContextCompat.checkSelfPermission(activity , Manifest.permission.READ_EXTERNAL_STORAGE);
+        int permission_2 = ContextCompat.checkSelfPermission(activity , Manifest.permission.CAMERA);
+        int permission_3 = ContextCompat.checkSelfPermission(activity , Manifest.permission.READ_EXTERNAL_STORAGE);
         ArrayList<String> permission_list = new ArrayList<String>();
 
-        if (permisson_2 != PackageManager.PERMISSION_GRANTED){
+        if (permission_2 != PackageManager.PERMISSION_GRANTED){
             permission_list.add(Manifest.permission.CAMERA);
         }
-        if (permisson_3 != PackageManager.PERMISSION_GRANTED){
+        if (permission_3 != PackageManager.PERMISSION_GRANTED){
             permission_list.add(Manifest.permission.READ_EXTERNAL_STORAGE);
         }
         if (permission_list.isEmpty()){
@@ -38,10 +36,10 @@ public class ImgPermissionHelpler {
     }
 
     public static void requestImgPermissions(Activity activity){
-        int permisson_3 = ContextCompat.checkSelfPermission(activity , Manifest.permission.READ_EXTERNAL_STORAGE);
+        int permission_3 = ContextCompat.checkSelfPermission(activity , Manifest.permission.READ_EXTERNAL_STORAGE);
         ArrayList<String> permission_list = new ArrayList<String>();
 
-        if (permisson_3 != PackageManager.PERMISSION_GRANTED){
+        if (permission_3 != PackageManager.PERMISSION_GRANTED){
             permission_list.add(Manifest.permission.READ_EXTERNAL_STORAGE);
         }
         if (permission_list.isEmpty()){
@@ -57,15 +55,19 @@ public class ImgPermissionHelpler {
         ActivityCompat.requestPermissions(activity , permissions , 1570);
     }
 
-    public static boolean hasValiedImgPermission(Activity activity){
-        int permissonStorage = ContextCompat.checkSelfPermission(activity , Manifest.permission.READ_EXTERNAL_STORAGE);
-        return permissonStorage == PackageManager.PERMISSION_GRANTED;
+    public static boolean hasValidImgPermission(Activity activity){
+        int permissionStorage = ContextCompat.checkSelfPermission(activity , Manifest.permission.READ_EXTERNAL_STORAGE);
+        return permissionStorage == PackageManager.PERMISSION_GRANTED;
     }
 
-    public static boolean hasValiedTakePhotoPermission(Activity activity){
-        int permissonCamera = ContextCompat.checkSelfPermission(activity , Manifest.permission.CAMERA);
-        int permissonStorage = ContextCompat.checkSelfPermission(activity , Manifest.permission.READ_EXTERNAL_STORAGE);
-        return permissonCamera == PackageManager.PERMISSION_GRANTED &&  permissonStorage == PackageManager.PERMISSION_GRANTED;
+    public static boolean hasValidTakePhotoPermission(Activity activity){
+        int permissionCamera = ContextCompat.checkSelfPermission(activity , Manifest.permission.CAMERA);
+        int permissionStorage = ContextCompat.checkSelfPermission(activity , Manifest.permission.READ_EXTERNAL_STORAGE);
+        int permissionStorageW = ContextCompat.checkSelfPermission(activity , Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        return permissionCamera == PackageManager.PERMISSION_GRANTED
+                &&  permissionStorage == PackageManager.PERMISSION_GRANTED
+                &&  permissionStorageW == PackageManager.PERMISSION_GRANTED
+                ;
     }
 
 }
