@@ -37,10 +37,14 @@ public class ImgPermissionHelper {
 
     public static void requestImgPermissions(Activity activity){
         int permission_3 = ContextCompat.checkSelfPermission(activity , Manifest.permission.READ_EXTERNAL_STORAGE);
+        int permissionStorageW = ContextCompat.checkSelfPermission(activity , Manifest.permission.WRITE_EXTERNAL_STORAGE);
         ArrayList<String> permission_list = new ArrayList<String>();
 
         if (permission_3 != PackageManager.PERMISSION_GRANTED){
             permission_list.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+        }
+        if (permissionStorageW != PackageManager.PERMISSION_GRANTED){
+            permission_list.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
         }
         if (permission_list.isEmpty()){
             return;
@@ -57,7 +61,9 @@ public class ImgPermissionHelper {
 
     public static boolean hasValidImgPermission(Activity activity){
         int permissionStorage = ContextCompat.checkSelfPermission(activity , Manifest.permission.READ_EXTERNAL_STORAGE);
-        return permissionStorage == PackageManager.PERMISSION_GRANTED;
+        int permissionStorageW = ContextCompat.checkSelfPermission(activity , Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        return permissionStorage == PackageManager.PERMISSION_GRANTED
+                && permissionStorageW == PackageManager.PERMISSION_GRANTED;
     }
 
     public static boolean hasValidTakePhotoPermission(Activity activity){
