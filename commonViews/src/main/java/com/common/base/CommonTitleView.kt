@@ -3,14 +3,13 @@ package com.common.base
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
-import com.common.dialog.OnCommonItemClickListener
 import com.common.util.Utils
 import com.ss.common.views.R
 import kotlinx.android.synthetic.main.common_title_view.view.*
 
 class CommonTitleView : BaseKotlinRelativeLayout {
 
-    var onCommonItemClickListener : OnCommonItemClickListener<Int>?= null
+    var onCommonTitleItemClickListener : OnCommonTitleClickListener?= null
 
     constructor(context: Context) : super(context){
         init()
@@ -34,11 +33,11 @@ class CommonTitleView : BaseKotlinRelativeLayout {
 
     override fun initListener() {
         commonLeftTextView.setOnClickListener {
-            onCommonItemClickListener?.onItemClick(0)
+            onCommonTitleItemClickListener?.onLeftBtnClick()
         }
         commonRightTextView.setOnClickListener {
-            onCommonItemClickListener?.onItemClick(1)
-        }
+            onCommonTitleItemClickListener?.onRightBtnClick()
+    }
     }
 
     fun setTitleBackgroundColor(color : Int){

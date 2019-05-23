@@ -57,6 +57,38 @@ public class MathUtil {
 		BigDecimal b2 = new BigDecimal(b);
 		return b1.add(b2).setScale(scale, BigDecimal.ROUND_HALF_UP).floatValue();
 	}
+
+
+	/**
+	 * 加法。
+	 * @param a
+	 * @param b
+	 * @param scale 保留小数点的位数（采用四舍五入）
+	 * @return
+	 */
+	public static float addF(BigDecimal a , BigDecimal b , int scale){
+		return a.add(b).setScale(scale, BigDecimal.ROUND_HALF_UP).floatValue();
+	}
+
+	/**
+	 * 加法。
+	 * @param a
+	 * @param b
+	 * @param scale 保留小数点的位数（采用四舍五入）
+	 * @return
+	 */
+	public static BigDecimal addBigDecimal(BigDecimal a , BigDecimal b , int scale){
+		return a.add(b).setScale(scale, BigDecimal.ROUND_HALF_UP);
+	}
+
+	/**
+	 * 将米单位值转化为公里单位值。
+	 * @param meter 米单位值
+	 * @return 公里单位值
+	 */
+	public static float meter2KmF(float meter){
+		return divideF(meter, 1000);
+	}
 	
 	/**
 	 * Returns a new BigDecimal whose value is this / divisor.
@@ -91,6 +123,38 @@ public class MathUtil {
 		BigDecimal b1 = new BigDecimal(a);
 		BigDecimal b2 = new BigDecimal(divisor);
 		float result =  b1.divide(b2, 2, BigDecimal.ROUND_HALF_UP).floatValue();
+		return result;
+	}
+
+	/**
+	 * Returns a new BigDecimal whose value is this / divisor.
+	 * As scale of the result the parameter scale is used. If rounding is required to meet the specified scale,
+	 * then the specified rounding mode roundingMode is applied.
+	 * @param a 除数
+	 * @param divisor 被除数
+	 * @return  a new BigDecimal whose value is this / divisor.
+	 */
+	public static float divideF(BigDecimal a , BigDecimal divisor){
+		if (new BigDecimal(0) == divisor) {
+			return 0;
+		}
+		float result =  a.divide(divisor, 2, BigDecimal.ROUND_HALF_UP).floatValue();
+		return result;
+	}
+
+	/**
+	 * Returns a new BigDecimal whose value is this / divisor.
+	 * As scale of the result the parameter scale is used. If rounding is required to meet the specified scale,
+	 * then the specified rounding mode roundingMode is applied.
+	 * @param a 除数
+	 * @param divisor 被除数
+	 * @return  a new BigDecimal whose value is this / divisor.
+	 */
+	public static BigDecimal divideBigDecimal(BigDecimal a , BigDecimal divisor){
+		if (new BigDecimal(0) == divisor) {
+			return new BigDecimal(0);
+		}
+		BigDecimal result =  a.divide(divisor, 2, BigDecimal.ROUND_HALF_UP);
 		return result;
 	}
 	
@@ -129,6 +193,40 @@ public class MathUtil {
 		BigDecimal b1 = new BigDecimal(a);
 		BigDecimal b2 = new BigDecimal(divisor);
 		float result =  b1.divide(b2, scale, BigDecimal.ROUND_HALF_UP).floatValue();
+		return result;
+	}
+
+	/**
+	 * Returns a new BigDecimal whose value is this / divisor.
+	 * As scale of the result the parameter scale is used. If rounding is required to meet the specified scale,
+	 * then the specified rounding mode roundingMode is applied.
+	 * @param a 除数
+	 * @param divisor 被除数
+	 * @param scale 保留小数点的位数（采用四舍五入）
+	 * @return  a new BigDecimal whose value is this / divisor.
+	 */
+	public static float divideF(BigDecimal a , BigDecimal divisor , int scale){
+		if (new BigDecimal(0) == divisor) {
+			return 0;
+		}
+		float result =  a.divide(divisor, scale, BigDecimal.ROUND_HALF_UP).floatValue();
+		return result;
+	}
+
+	/**
+	 * Returns a new BigDecimal whose value is this / divisor.
+	 * As scale of the result the parameter scale is used. If rounding is required to meet the specified scale,
+	 * then the specified rounding mode roundingMode is applied.
+	 * @param a 除数
+	 * @param divisor 被除数
+	 * @param scale 保留小数点的位数（采用四舍五入）
+	 * @return  a new BigDecimal whose value is this / divisor.
+	 */
+	public static BigDecimal divideBigDecimal(BigDecimal a , BigDecimal divisor , int scale){
+		if (new BigDecimal(0) == divisor) {
+			return new BigDecimal(0);
+		}
+		BigDecimal result =  a.divide(divisor, scale, BigDecimal.ROUND_HALF_UP);
 		return result;
 	}
 

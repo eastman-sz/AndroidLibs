@@ -2,7 +2,7 @@ package com.common.base
 
 import android.support.v4.view.ViewPager
 
-class OnIPageChangeListener : ViewPager.OnPageChangeListener {
+open class OnIPageChangeListener : ViewPager.OnPageChangeListener {
 
     override fun onPageScrollStateChanged(p0: Int) {
 

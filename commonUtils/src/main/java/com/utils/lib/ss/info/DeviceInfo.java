@@ -9,7 +9,6 @@ import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Environment;
 import android.text.TextUtils;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -18,7 +17,6 @@ import java.net.NetworkInterface;
 import java.util.Locale;
 import java.util.Random;
 import java.util.TimeZone;
-
 /**
  * 设备信息。 
  * @author E
@@ -156,7 +154,11 @@ public class DeviceInfo {
 				"v" , "X" , "P" ,"D"  , "T" , "L" , "K", "M" , "N" , "X" , "R" , "T" ,"J" ,
 				"0" ,"1" , "2", "3", "4", "5", "6", "7", "8", "9"};
 		StringBuilder builder = new StringBuilder();
-		builder.append(String.valueOf(System.currentTimeMillis()).substring(10));
+		String timeStamp = String.valueOf(System.currentTimeMillis());
+		int length = timeStamp.length();
+        if (length > 4){
+            builder.append(timeStamp.substring(length - 4));
+        }
 		for (int i = 0 ; i < 8 ; i++){
 			builder.append(data[new Random().nextInt(1000)%data.length]);
 		}
