@@ -202,6 +202,20 @@ public class BitmapHelper {
 			return null;
 		}
 	}
+
+	public static File saveBmpToFile(byte[] data){
+		try {
+			File file = new File(FileHelper.getImageDirFile() , getFileName());
+			FileOutputStream fOut = new FileOutputStream(file);
+			fOut.write(data , 0 , data.length);
+			fOut.flush();
+			fOut.close();
+			return file;
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	/**
 	 * 根据图片网络地址取得Drawable对象。
