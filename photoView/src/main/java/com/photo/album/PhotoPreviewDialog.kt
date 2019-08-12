@@ -60,7 +60,7 @@ class PhotoPreviewDialog : PhotoFullScreenDialog {
             }
         }
         override fun onTapClick() {
-
+            dismiss()
         }
     }
 

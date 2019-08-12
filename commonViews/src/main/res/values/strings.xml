@@ -3,7 +3,8 @@
 
     <string name="sfs_back">Back</string>
     <string name="font_path">fonts/fzlt.TTF</string>
-    <string name="font_digit_path">fonts/HelveticaNeue-Condensed.otf</string>
+   <!-- <string name="font_digit_path">fonts/HelveticaNeue-Condensed.otf</string>-->
+    <string name="font_digit_path">fonts/DINEngschrift.otf</string>
 
     <string name="action_settings">Settings</string>
 

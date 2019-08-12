@@ -3,12 +3,10 @@ package com.utils.lib.ss.common;
 import android.annotation.SuppressLint;
 import android.os.Environment;
 import android.util.Log;
-
 import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 /**
  * 文件处理类。
  * @author E
@@ -16,18 +14,19 @@ import java.util.Date;
 public class FileHelper {
 
 	//统一的项目存储地址
-	private static String UNIFROM_STORE_FILE_PATH = Environment.getExternalStorageDirectory() + "/.sdk/";
+	private static String UNIFORM_STORE_FILE_PATH = Environment.getExternalStorageDirectory() + "/.sdk/";
 	//图片存储地址
-	private static String UNIFROM_IMAGE_FILE_PATH = UNIFROM_STORE_FILE_PATH + "images/";
+	private static String UNIFORM_IMAGE_FILE_PATH = UNIFORM_STORE_FILE_PATH + "images/";
 	//语音存储地址
-	private static String UNIFROM_AUDIO_FILE_PATH = UNIFROM_STORE_FILE_PATH + "audios/";
+	private static String UNIFORM_AUDIO_FILE_PATH = UNIFORM_STORE_FILE_PATH + "audios/";
 	//下载的APK地址
-	private static String UNIFROM_APK_FILE_PATH = UNIFROM_STORE_FILE_PATH + "downApk/";
+	private static String UNIFORM_APK_FILE_PATH = UNIFORM_STORE_FILE_PATH + "downApk/";
 	//下载的视频地址
-	private static String UNIFROM_VIDEO_FILE_PATH = UNIFROM_STORE_FILE_PATH + "video/";
+	private static String UNIFORM_VIDEO_FILE_PATH = UNIFORM_STORE_FILE_PATH + "video/";
 	//其他文件地址
-	private static String UNIFROM_DIR_FILE_PATH = UNIFROM_STORE_FILE_PATH + "file/";
-	
+	private static String UNIFORM_DIR_FILE_PATH = UNIFORM_STORE_FILE_PATH + "file/";
+	//日志文件地址
+	private static String UNIFORM_LOG_FILE_PATH = UNIFORM_STORE_FILE_PATH + "logFile/";
 	
 	public static boolean fileExist(String filePath){
 		if (CheckHelper.isNullOrEmpty(filePath)) {
@@ -90,40 +89,48 @@ public class FileHelper {
 	 * 清除本地缓存的所有文件内容，包括图片，语音等。
 	 */
 	public static void clearCacheFiles(){
-		deletImageDirFile();
+		deleteImageDirFile();
 		deleteAudioDirFile();
 		deleteDownApkDirFile();
 		deleteDirFile();
+		deleteLogDirFile();
 	}
 	
 	/**
 	 * 删除UNIFROM_IMAGE_FILE_PATH目录下的所有图片文件及文件夹。
 	 */
-	public static void deletImageDirFile(){
-		deleteDirFiles(UNIFROM_IMAGE_FILE_PATH);
+	public static void deleteImageDirFile(){
+		deleteDirFiles(UNIFORM_IMAGE_FILE_PATH);
 	}
 	
 	/**
 	 * 删除UNIFROM_AUDIO_FILE_PATH目录下的所有语音文件及文件夹。
 	 */
 	public static void deleteAudioDirFile(){
-		deleteDirFiles(UNIFROM_AUDIO_FILE_PATH);
+		deleteDirFiles(UNIFORM_AUDIO_FILE_PATH);
 	}
 	
 	/**
 	 * 删除UNIFROM_APK_FILE_PATH目录下的所有APK文件及文件夹。
 	 */
 	public static void deleteDownApkDirFile(){
-		deleteDirFiles(UNIFROM_APK_FILE_PATH);
+		deleteDirFiles(UNIFORM_APK_FILE_PATH);
 	}
 	
 	/**
 	 * 删除UNIFROM_APK_FILE_PATH目录下的所有APK文件及文件夹。
 	 */
 	public static void deleteDirFile(){
-		deleteDirFiles(UNIFROM_DIR_FILE_PATH);
+		deleteDirFiles(UNIFORM_DIR_FILE_PATH);
 	}
-	
+
+	/**
+	 * 删除UNIFORM_LOG_FILE_PATH目录下的所有日志文件及文件夹。
+	 */
+	public static void deleteLogDirFile(){
+		deleteDirFiles(UNIFORM_LOG_FILE_PATH);
+	}
+
 	public static void deleteDirFiles(String path){
 		File dirFile = new File(path);
 		if (dirFile.isDirectory()) {
@@ -140,7 +147,7 @@ public class FileHelper {
 	 * @return 存储图片的文件夹
 	 */
 	public static File getImageDirFile(){
-		return makeFileDirs(UNIFROM_IMAGE_FILE_PATH);
+		return makeFileDirs(UNIFORM_IMAGE_FILE_PATH);
 	}
 	
 	/**
@@ -148,7 +155,7 @@ public class FileHelper {
 	 * @return 存储录音的文件夹
 	 */
 	public static File getAudioDirFile(){
-		return makeFileDirs(UNIFROM_AUDIO_FILE_PATH);
+		return makeFileDirs(UNIFORM_AUDIO_FILE_PATH);
 	}
 	
 	/**
@@ -156,7 +163,7 @@ public class FileHelper {
 	 * @return 存储录音的文件夹
 	 */
 	public static File getVideoDirFile(){
-		return makeFileDirs(UNIFROM_VIDEO_FILE_PATH);
+		return makeFileDirs(UNIFORM_VIDEO_FILE_PATH);
 	}	
 	
 	/**
@@ -164,9 +171,17 @@ public class FileHelper {
 	 * @return 存储录音的文件夹
 	 */
 	public static File getDirFile(){
-		return makeFileDirs(UNIFROM_DIR_FILE_PATH);
+		return makeFileDirs(UNIFORM_DIR_FILE_PATH);
 	}
-	
+
+	/**
+	 * 取得统一日志目录文件夹。
+	 * @return 存储日志的文件夹
+	 */
+	public static File getLogDirFile(){
+		return makeFileDirs(UNIFORM_LOG_FILE_PATH);
+	}
+
 	/**
 	 * 在dirFile目录下创建fileName命名的文件。
 	 * @param dirFile 目录文件
@@ -209,7 +224,7 @@ public class FileHelper {
 	 * @return 存储图片的文件夹
 	 */
 	public static File getDownApkDirFile(){
-		return makeFileDirs(UNIFROM_APK_FILE_PATH);
+		return makeFileDirs(UNIFORM_APK_FILE_PATH);
 	}
 	
 	private static File makeFileDirs(String path){
@@ -230,7 +245,7 @@ public class FileHelper {
 	 * @param imageFileName 要删除的图片名
 	 */
 	public static void deleteImageFile(String imageFileName){
-		File dirFile = new File(UNIFROM_IMAGE_FILE_PATH);
+		File dirFile = new File(UNIFORM_IMAGE_FILE_PATH);
 		if (dirFile.isDirectory()) {
 			File[] files = dirFile.listFiles();
 			for (int i = 0; i < files.length; i++) {

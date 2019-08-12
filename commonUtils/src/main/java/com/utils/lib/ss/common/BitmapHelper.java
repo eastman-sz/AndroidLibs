@@ -133,6 +133,17 @@ public class BitmapHelper {
 		bmp =BitmapFactory.decodeFile(imageFilePath, bmpFactoryOptions);
 		return bmp;
 	}
+
+	public static Bitmap getSuitableBmp2(Context context, String imageFilePath){
+		if (imageFilePath.startsWith("file://")){
+			imageFilePath = imageFilePath.substring(7);
+		}
+		BitmapFactory.Options bmpFactoryOptions = new BitmapFactory.Options();
+		bmpFactoryOptions.inSampleSize= 1;
+		bmpFactoryOptions.inJustDecodeBounds=false;
+		Bitmap bmp =BitmapFactory.decodeFile(imageFilePath, bmpFactoryOptions);
+		return bmp;
+	}
 	
 	/**
 	 * 将图片存入文件并返回图片地址。

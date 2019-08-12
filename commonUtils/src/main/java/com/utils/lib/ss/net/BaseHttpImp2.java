@@ -34,7 +34,10 @@ public abstract class BaseHttpImp2 implements BaseHttp {
 	
 	//JSON里的ＫＥＹ
 	public static final String RESPONSECODE = "responseCode";
-	
+
+	public static final String methodPost = "POST";
+	public static final String methodGet = "GET";
+
 	/**
 	 * Send request to server (Basic method).
 	 * @param urls 地址数组
@@ -176,7 +179,11 @@ public abstract class BaseHttpImp2 implements BaseHttp {
 		int urlSize = urls.length;
 		URL url = new URL(requestUrl);
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-		conn.setRequestMethod("POST");
+		String userAgent = getUserAgent();
+		if (null != userAgent && userAgent.length() > 5){
+			conn.setRequestProperty("User-agent" , userAgent);
+		}
+		conn.setRequestMethod(methodGet);
 		conn.setDoOutput(true);
 		conn.setConnectTimeout(TIME_OUT);
 		OutputStream out = conn.getOutputStream();
@@ -191,7 +198,16 @@ public abstract class BaseHttpImp2 implements BaseHttp {
 		requestResult.setHttpURLConnection(conn);
 		return requestResult;
 	}
-	
+
+
+	protected String getMethod(){
+		return methodPost;
+	}
+
+	protected String getUserAgent(){
+		return "";
+	}
+
 	/**
 	 * 将输入流转为字符流。
 	 * @param inStream 输入流
