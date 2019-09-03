@@ -13,8 +13,7 @@ import java.util.Date;
 @SuppressLint("SimpleDateFormat")
 public class DateHelper {
 
-	public static final String Y_M_D = "yyyy-MM-dd";
-	
+
 	/**
 	 * 一年当中的第几周
 	 * @return 一年当中的第几周
@@ -223,23 +222,23 @@ public class DateHelper {
 
     /**
      * 一年之中的某一周的开始日期
-     * @param timstamp 时间
+     * @param timestamp 时间
      * @return
      */
-    public static long getWeekStartTimestamp(long timstamp){
-        int weekOfYear = getWeekOfYear(timstamp);
-        int year = getYear(timstamp);
+    public static long getWeekStartTimestamp(long timestamp){
+        int weekOfYear = getWeekOfYear(timestamp);
+        int year = getYear(timestamp);
         return getWeekStartTimestamp(year , weekOfYear);
     }
 
     /**
      * 一年之中的某一周的结束日期
-     * @param timstamp 时间
+     * @param timestamp 时间
      * @return
      */
-    public static long getWeekEndTimestamp(long timstamp){
-        int weekOfYear = getWeekOfYear(timstamp);
-        int year = getYear(timstamp);
+    public static long getWeekEndTimestamp(long timestamp){
+        int weekOfYear = getWeekOfYear(timestamp);
+        int year = getYear(timestamp);
         return getWeekEndTimestamp(year , weekOfYear);
     }
 	
@@ -263,12 +262,8 @@ public class DateHelper {
 	 * @return
 	 */
 	public static long getWeekStartTimestamp(int year , int weekOfYear){
-		Calendar cal = Calendar.getInstance();
-		cal.clear();
-		cal.set(Calendar.YEAR, year);
-		cal.set(Calendar.WEEK_OF_YEAR, weekOfYear);
-		cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
-		return cal.getTime().getTime()/1000;
+		Date weekStartDate = getWeekStartDate(year , weekOfYear);
+		return weekStartDate.getTime()/1000;
 	}
 	
 	/**
@@ -309,13 +304,9 @@ public class DateHelper {
      * @return
      */
     public static long getWeekEndTimestamp(int year , int weekOfYear){
-        Calendar cal = Calendar.getInstance();
-        cal.clear();
-        cal.set(Calendar.YEAR, year);
-        cal.set(Calendar.WEEK_OF_YEAR,weekOfYear);
-        cal.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
+		Date weekEndDate = getWeekEndDate(year , weekOfYear);
         //00:00:00
-        long timestamp = cal.getTime().getTime()/1000;
+        long timestamp = weekEndDate.getTime()/1000;
         //23:59:59
         return getDayEndTimestamp(timestamp);
     }
@@ -370,11 +361,11 @@ public class DateHelper {
 
 	public static String getDayOfWeekString(long timestamp){
         String[] weekDays = {"周日", "周一", "周二", "周三", "周四", "周五", "周六"};
-        int dayOfweek = getDayOfWeek(timestamp) - 1;
-        if (dayOfweek < 0){
-            dayOfweek = 0;
+        int dayOfWeek = getDayOfWeek(timestamp) - 1;
+        if (dayOfWeek < 0){
+			dayOfWeek = 0;
         }
-        return weekDays[dayOfweek];
+        return weekDays[dayOfWeek];
     }
 
     public static Date getSomeDayDate(int year , int dayOfYear){
@@ -392,7 +383,7 @@ public class DateHelper {
      * @param pattern
      * @return 某一天的时间格式。
      */
-    public static String getSomeDayDateFomat(int year , int dayOfYear , String pattern){
+    public static String getSomeDayDateFormat(int year , int dayOfYear , String pattern){
         Date date = getSomeDayDate(year , dayOfYear);
         return dateFormat(date , pattern);
     }
