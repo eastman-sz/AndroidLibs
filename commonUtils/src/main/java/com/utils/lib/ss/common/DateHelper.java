@@ -1,11 +1,9 @@
 package com.utils.lib.ss.common;
 
 import android.annotation.SuppressLint;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
 /**
  * 日期功能类。
  * @author E
@@ -211,6 +209,16 @@ public class DateHelper {
         return getWeekStartDate(getYear() , weekOfYear);
 	}
 
+	/**
+	 * 一年之中的某一周的开始日期
+	 * @param weekOfYear 一年之中的某一周
+	 * @startFromSunDay 一周是否从周日开始，否则是从周一开始
+	 * @return
+	 */
+	public static Date getWeekStartDate(int weekOfYear , boolean startFromSunDay){
+		return getWeekStartDate(getYear() , weekOfYear , startFromSunDay);
+	}
+
     /**
      * 一年之中的某一周的开始日期
      * @param weekOfYear 一年之中的某一周
@@ -248,12 +256,22 @@ public class DateHelper {
      * @return
      */
 	public static Date getWeekStartDate(int year , int weekOfYear){
-        Calendar cal = Calendar.getInstance();
-        cal.clear();
-        cal.set(Calendar.YEAR, year);
-        cal.set(Calendar.WEEK_OF_YEAR, weekOfYear);
-        cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
-        return cal.getTime();
+		return getWeekStartDate(year , weekOfYear , true);
+	}
+
+	/**
+	 * 一年之中的某一周的开始日期
+	 * @param weekOfYear 一年之中的某一周
+	 * @param startFromSunDay 一周的开始，是否从周日开始，否则是从周1开始
+	 * @return Date
+	 */
+	public static Date getWeekStartDate(int year , int weekOfYear , boolean startFromSunDay){
+		Calendar cal = Calendar.getInstance();
+		cal.clear();
+		cal.set(Calendar.YEAR, year);
+		cal.set(Calendar.WEEK_OF_YEAR, weekOfYear);
+		cal.set(Calendar.DAY_OF_WEEK,  startFromSunDay ? Calendar.SUNDAY : Calendar.SATURDAY);
+		return cal.getTime();
 	}
 
 	/**
@@ -263,6 +281,17 @@ public class DateHelper {
 	 */
 	public static long getWeekStartTimestamp(int year , int weekOfYear){
 		Date weekStartDate = getWeekStartDate(year , weekOfYear);
+		return weekStartDate.getTime()/1000;
+	}
+
+	/**
+	 * 一年之中的某一周的开始日期
+	 * @param weekOfYear 一年之中的某一周
+	 * @startFromSunDay 一周的开始，是否从周日开始，否则是从周1开始
+	 * @return
+	 */
+	public static long getWeekStartTimestamp(int year , int weekOfYear , boolean startFromSunDay){
+		Date weekStartDate = getWeekStartDate(year , weekOfYear , startFromSunDay);
 		return weekStartDate.getTime()/1000;
 	}
 	
@@ -275,6 +304,16 @@ public class DateHelper {
         return getWeekEndDate(getYear() , weekOfYear);
 	}
 
+	/**
+	 * 一年之中的某一周的结束日期
+	 * @param weekOfYear 一年之中的某一周
+	 * @startFromSunDay 一周是否从周日开始，如果是结束日是周六，否则是周日
+	 * @return Date
+	 */
+	public static Date getWeekEndDate(int weekOfYear , boolean startFromSunDay){
+		return getWeekEndDate(getYear() , weekOfYear , startFromSunDay);
+	}
+
     /**
      * 一年之中的某一周的结束日期
      * @param weekOfYear 一年之中的某一周
@@ -283,6 +322,16 @@ public class DateHelper {
     public static long getWeekEndTimestamp(int weekOfYear){
         return getWeekEndTimestamp(getYear() , weekOfYear);
     }
+
+	/**
+	 * 一年之中的某一周的结束日期
+	 * @param weekOfYear 一年之中的某一周
+	 * @startFromSunDay 一周是否从周日开始，如果是结束日是周六，否则是周日
+	 * @return
+	 */
+	public static long getWeekEndTimestamp(int weekOfYear , boolean startFromSunDay){
+		return getWeekEndTimestamp(getYear() , weekOfYear , startFromSunDay);
+	}
 	
 	/**
 	 * 一年之中的某一周的结束日期
@@ -290,12 +339,22 @@ public class DateHelper {
 	 * @return
 	 */
 	public static Date getWeekEndDate(int year , int weekOfYear){
-        Calendar cal = Calendar.getInstance();
-        cal.clear();
-        cal.set(Calendar.YEAR, year);
-        cal.set(Calendar.WEEK_OF_YEAR,weekOfYear);
-        cal.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
-        return cal.getTime();
+		return getWeekEndDate(year , weekOfYear , true);
+	}
+
+	/**
+	 * 一年之中的某一周的结束日期
+	 * @param weekOfYear 一年之中的某一周
+	 * @startFromSunDay 一周是否从周日开始，如果是结束日是周六，否则是周日
+	 * @return
+	 */
+	public static Date getWeekEndDate(int year , int weekOfYear , boolean startFromSunDay){
+		Calendar cal = Calendar.getInstance();
+		cal.clear();
+		cal.set(Calendar.YEAR, year);
+		cal.set(Calendar.WEEK_OF_YEAR,weekOfYear);
+		cal.set(Calendar.DAY_OF_WEEK,  startFromSunDay ? Calendar.SATURDAY : Calendar.SUNDAY);
+		return cal.getTime();
 	}
 
     /**
@@ -310,6 +369,20 @@ public class DateHelper {
         //23:59:59
         return getDayEndTimestamp(timestamp);
     }
+
+	/**
+	 * 一年之中的某一周的结束日期
+	 * @param weekOfYear 一年之中的某一周
+	 * @startFromSunDay 一周是否从周日开始，如果是结束日是周六，否则是周日
+	 * @return
+	 */
+	public static long getWeekEndTimestamp(int year , int weekOfYear , boolean startFromSunDay){
+		Date weekEndDate = getWeekEndDate(year , weekOfYear , startFromSunDay);
+		//00:00:00
+		long timestamp = weekEndDate.getTime()/1000;
+		//23:59:59
+		return getDayEndTimestamp(timestamp);
+	}
 	
 	/**
 	 * 一周当中的第几天。
