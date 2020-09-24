@@ -183,7 +183,11 @@ public abstract class BaseHttpImp2 implements BaseHttp {
 		if (null != userAgent && userAgent.length() > 5){
 			conn.setRequestProperty("User-agent" , userAgent);
 		}
-		conn.setRequestMethod(methodGet);
+		String authorization = getAuthorization();
+		if (null != authorization && authorization.length() > 5){
+			conn.setRequestProperty("Authorization" , authorization);
+		}
+		conn.setRequestMethod(getMethod());
 		conn.setDoOutput(true);
 		conn.setConnectTimeout(TIME_OUT);
 		OutputStream out = conn.getOutputStream();
@@ -205,6 +209,10 @@ public abstract class BaseHttpImp2 implements BaseHttp {
 	}
 
 	protected String getUserAgent(){
+		return "";
+	}
+
+	protected String getAuthorization() {
 		return "";
 	}
 
