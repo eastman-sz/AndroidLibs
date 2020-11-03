@@ -6,7 +6,6 @@ import android.text.TextUtils;
 import com.utils.lib.ss.common.CheckHelper;
 import com.utils.lib.ss.common.ThreadPool;
 import com.utils.lib.ss.info.FormFile;
-
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.File;
@@ -25,7 +24,10 @@ public abstract class BaseUploadImp implements BaseUploadInterface {
 	public static final int RESULT_OK = 9654225;
 	public static final int ERROR_REQUEST = 96526544;
 	public static final int NET_ERROR_CODE = 1234564;
-	
+
+	public static final String methodPost = "POST";
+	public static final String methodGet = "GET";
+
 	public BaseUploadImp() {
 	}
 
@@ -166,6 +168,16 @@ public abstract class BaseUploadImp implements BaseUploadInterface {
             conn.setDoInput(true); // 允许输入流
             conn.setDoOutput(true); // 允许输出流
             conn.setUseCaches(false); // 不允许使用缓存
+
+			String userAgent = getUserAgent();
+			if (null != userAgent && userAgent.length() > 5){
+				conn.setRequestProperty("User-agent" , userAgent);
+			}
+			String authorization = getAuthorization();
+			if (null != authorization && authorization.length() > 5){
+				conn.setRequestProperty("Authorization" , authorization);
+			}
+
             conn.setRequestMethod("POST"); // 请求方式
             conn.setRequestProperty("Charset", "utf-8"); // 设置编码
             conn.setRequestProperty("connection", "keep-alive");
@@ -238,7 +250,19 @@ public abstract class BaseUploadImp implements BaseUploadInterface {
 	protected int getTimeOutSeconds(){
 		return 30*1000;
 	}
-	
+
+//	protected String getMethod(){
+//		return methodPost;
+//	}
+
+	protected String getUserAgent(){
+		return "";
+	}
+
+	protected String getAuthorization() {
+		return "";
+	}
+
 	/**
 	 * 将输入流转为字符串
 	 * @param inStream
