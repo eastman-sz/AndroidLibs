@@ -189,7 +189,8 @@ public abstract class BaseHttpImp2 implements BaseHttp {
 		}
 		conn.setRequestMethod(getMethod());
 		conn.setDoOutput(true);
-		conn.setConnectTimeout(TIME_OUT);
+		conn.setReadTimeout(getTimeOut());
+		conn.setConnectTimeout(getTimeOut());
 		OutputStream out = conn.getOutputStream();
 		out.write(builder.toString().getBytes(CHARSET));
 		int responseCode = conn.getResponseCode(); 
@@ -214,6 +215,10 @@ public abstract class BaseHttpImp2 implements BaseHttp {
 
 	protected String getAuthorization() {
 		return "";
+	}
+
+	protected int getTimeOut(){
+		return TIME_OUT;
 	}
 
 	/**
