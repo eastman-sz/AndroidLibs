@@ -127,7 +127,7 @@ public class StringUtils {
 		return text = text.replaceAll("\r|\n", "");
 	}
 	
-	public static String fomatText(String text){
+	public static String formatText(String text){
 	if (CheckHelper.isNullOrEmpty(text)) {
 		text = "";
 		}else {
@@ -145,7 +145,7 @@ public class StringUtils {
 		}
 		text = ToDBC(text);
 		text = trimLineBreak(text);
-		text = fomatText(text);
+		text = formatText(text);
 		return text;
 	}
 	

@@ -12,6 +12,9 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+
 import com.utils.lib.ss.info.LocalAppInfo;
 
 import java.util.ArrayList;
@@ -66,7 +69,7 @@ public class PkgHelper {
 	 * @param context 上下文环境
 	 * @param path 应用路径
 	 */
-	public static void instalAPK(Context context, String path) {
+	public static void installAPK(Context context, String path) {
 		if(CheckHelper.isNullOrEmpty(path)) {
 			throw new NullPointerException("path is not allowed to be null or empty");
 		}
@@ -82,6 +85,7 @@ public class PkgHelper {
 	 * @param pkgName 包名
 	 * @return boolean 能打开返回True , 不能打开返回False
 	 */
+	@RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
 	public static boolean openAPKByPkgName(Context context, String pkgName) {
 		if(CheckHelper.isNullOrEmpty(pkgName)) {
 			//pkgName is not allowed to be null or empty
@@ -184,6 +188,7 @@ public class PkgHelper {
 	 * 判断应用是否在前台运行。
 	 * @return boolean boolean
 	 */
+	@RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
 	public static boolean isAppOnForeground(Context context){
 		ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
 		String packageName = context.getPackageName();
