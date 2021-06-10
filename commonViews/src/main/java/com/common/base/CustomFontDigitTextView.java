@@ -2,13 +2,13 @@ package com.common.base;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
+import android.widget.TextView;
 /**
  * 自定义字体的TextView。
  * @author E
  */
-public class CustomFontDigitTextView extends AppCompatTextView {
+public class CustomFontDigitTextView extends TextView {
 
 	public CustomFontDigitTextView(Context context) {
 		super(context);
